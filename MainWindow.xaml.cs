@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwordDamageTester;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,34 +21,55 @@ namespace SwordDamageWPFTester
     /// </summary>
     public partial class MainWindow : Window
     {
+        Random random = new Random();
+        SwordDamage swordDamage = new SwordDamage();
+
         public MainWindow()
         {
             InitializeComponent();
+            swordDamage.SetMagic(false);
+            swordDamage.SetFlaming(false);
+            RollDice();
+        }
+
+        private void RollDice()
+        {
+            swordDamage.Roll = random.Next(1, 7) + random.Next(1, 7) + random.Next(1, 7);
+            DisplayDamage();
+        }
+
+        private void DisplayDamage()
+        {
+            damage.Text = "Rolled " + swordDamage.Roll + " for " + swordDamage.Damage + " HP";
         }
 
         private void flaming_Checked(object sender, RoutedEventArgs e)
         {
-
+            swordDamage.SetFlaming(true);
+            DisplayDamage();
         }
 
         private void flaming_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            swordDamage.SetFlaming(false);
+            DisplayDamage();
         }
 
         private void magic_Checked(object sender, RoutedEventArgs e)
         {
-
+            swordDamage.SetMagic(true);
+            DisplayDamage();
         }
 
         private void magic_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            swordDamage.SetMagic(false);
+            DisplayDamage();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            RollDice();
         }
     }
 }
