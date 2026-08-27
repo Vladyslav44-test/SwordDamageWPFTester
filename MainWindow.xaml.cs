@@ -24,5 +24,30 @@ namespace SwordDamageWPFTester
         {
             InitializeComponent();
         }
+
+        private void flaming_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void flaming_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void magic_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void magic_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
