@@ -22,48 +22,51 @@ namespace SwordDamageWPFTester
     public partial class MainWindow : Window
     {
         Random random = new Random();
-        SwordDamage swordDamage = new SwordDamage();
+        SwordDamage swordDamage;
 
         public MainWindow()
         {
+            swordDamage = new SwordDamage(random.Next(1, 7) + random.Next(1, 7) + random.Next(1, 7));
             InitializeComponent();
-            swordDamage.SetMagic(false);
-            swordDamage.SetFlaming(false);
+            swordDamage.Magic = false;
+            swordDamage.Flaming = false;
             RollDice();
         }
 
         private void RollDice()
         {
             swordDamage.Roll = random.Next(1, 7) + random.Next(1, 7) + random.Next(1, 7);
+            swordDamage.Flaming = flaming.IsChecked.Value;
+            swordDamage.Magic = magic.IsChecked.Value;
             DisplayDamage();
         }
 
         private void DisplayDamage()
         {
-            damage.Text = "Rolled " + swordDamage.Roll + " for " + swordDamage.Damage + " HP";
+            damage.Text = $"Rolled {swordDamage.Roll} for {swordDamage.Damage} HP";
         }
 
         private void flaming_Checked(object sender, RoutedEventArgs e)
         {
-            swordDamage.SetFlaming(true);
+            swordDamage.Flaming = true;
             DisplayDamage();
         }
 
         private void flaming_Unchecked(object sender, RoutedEventArgs e)
         {
-            swordDamage.SetFlaming(false);
+            swordDamage.Flaming = false;
             DisplayDamage();
         }
 
         private void magic_Checked(object sender, RoutedEventArgs e)
         {
-            swordDamage.SetMagic(true);
+            swordDamage.Magic = true;
             DisplayDamage();
         }
 
         private void magic_Unchecked(object sender, RoutedEventArgs e)
         {
-            swordDamage.SetMagic(false);
+            swordDamage.Magic = false;
             DisplayDamage();
         }
 
